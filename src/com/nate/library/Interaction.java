@@ -1,4 +1,4 @@
-package com.nate.editor;
+package com.nate.library;
 
 public enum Interaction {
 	
@@ -10,6 +10,11 @@ public enum Interaction {
 	ROCK_STRENGTH,
 	WATERFALL,
 	PORTAL,
-	PERSON
+	PERSON, 
+	BALL, 
+	PUDDLE, 
+	RIDGE, 
+	SIGN, 
+	TALLGRASS
 	
 }
