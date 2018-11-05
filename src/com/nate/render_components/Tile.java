@@ -4,14 +4,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-
+import com.nate.library.Block;
 import com.nate.library.Settings;
-import com.nate.map.MapService;
 
 /**
  * Each block on the map.  One Tile holds one block image.
@@ -19,9 +15,10 @@ import com.nate.map.MapService;
  * 
  * @author Nate
  */
-public class Tile extends JButton {
+public class Tile extends ImageButton {
 	
 	private static final long serialVersionUID = -4631982310313355027L;
+	private Block block;
 	private BufferedImage image;
 	
 	/**
@@ -31,8 +28,8 @@ public class Tile extends JButton {
 	 * @param height for the tile
 	 */
 	public Tile(int width, int height) {
-		image = getScaledImage(Settings.DEFAULT_MAP_BLOCK.getImage(), width, height);
-		setSize(width, height);
+		super(width, height, Settings.DEFAULT_MAP_BLOCK.getImage());
+		block = Settings.DEFAULT_MAP_BLOCK;
 	}
 
 	/**
@@ -42,18 +39,40 @@ public class Tile extends JButton {
 	 * @param height for the tile
 	 * @param image for the tile
 	 */
-	public Tile(int width, int height, BufferedImage image) {
-		this.image = getScaledImage(image, width, height);
-		setSize(width, height);
+	public Tile(int width, int height, Block block) {
+		super(width, height, block.getImage());
+		this.block = block;
 	}
 	
 	/**
-	 * Sets the image of the tile. Updates the image automatically.
+	 * Gets the block of the tile.
 	 * 
-	 * @param image for the tile
+	 * @return block of the tile
 	 */
+	public Block getBlock() {
+		return block;
+	}
+	
+	/**
+	 * Sets the block and image of the tile. Updates the image automatically.
+	 * 
+	 * @param block and image for the tile
+	 */
+	public void setBlock(Block block) {
+		this.block = block;
+		super.setImage(block.getImage());
+	}
+	
+	/**
+	 * Sets the image of the button. Updates the image automatically.
+	 * This is not recommended because the Block type parameter will
+	 * not be updated to this image.  Use setBlock(Block) instead.
+	 * 
+	 * @param image for the button
+	 */
+	@Deprecated
 	public void setImage(BufferedImage image) {
-		this.image = image;
+		this.image = getScaledImage(image, getWidth(), getHeight());
 	}
 	
 	/**

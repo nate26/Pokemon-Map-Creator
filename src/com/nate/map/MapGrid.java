@@ -51,6 +51,17 @@ public class MapGrid extends ArrayList<Block> {
 	}
 	
 	/**
+	 * Sets the block on the [i,j] matrix position.
+	 * 
+	 * @param block type
+	 * @param i position
+	 * @param j position
+	 */
+	public void setBlock(Block block, int i, int j) {
+		add(i * width + j, block);
+	}
+	
+	/**
 	 * Gets the frequency of a certain block on the map.
 	 * 
 	 * @param block specified

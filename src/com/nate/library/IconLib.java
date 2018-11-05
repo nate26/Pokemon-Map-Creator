@@ -1,4 +1,4 @@
-package com.nate.library.models;
+package com.nate.library;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,30 +6,44 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.nate.library.Block;
-import com.nate.library.ImageFileException;
-
-public class Pokemon {
+/**
+ * An Enum Library of all the image blocks for a map.
+ * 
+ * @author Nate
+ */
+public enum IconLib {
 	
-	private String id;
-	private String name;
-	private String type1;
-	private String type2;
-	private BufferedImage icon;
-
-	public Pokemon(String id, String name, String type1, String type2, String icon) {
-		this.id = id;
-		this.name = name;
-		this.type1 = type1;
-		this.type2 = type2;
-		
-		String relativePath = checkPath(icon);
+	// GRASS
+	RESIZE("/icons/resize.png"),
+	PAN_LEFT("/icons/panLeft.png"),
+	PAN_RIGHT("/icons/panRight.png"),
+	PAN_UP("/icons/panUp.png"),
+	PAN_DOWN("/icons/panDown.png");
+	
+	private final BufferedImage image;
+	
+	/**
+	 * Sets the icon image.
+	 * 
+	 * @param path to the image
+	 */
+	private IconLib(String path) {
+		String relativePath = checkPath(path);
 		try {
-			this.icon = ImageIO.read(new File(relativePath));
+			image = ImageIO.read(new File(relativePath));
 		} catch (IOException e) {
-			throw new ImageFileException("Absolute path \"" + icon + "\" for \"" 
+			throw new ImageFileException("Absolute path \"" + path + "\" for \"" 
 					+ this.toString() + "\" did not find an image.");
 		}
+	}
+	
+	/**
+	 * Gets the icon image.
+	 * 
+	 * @return image
+	 */
+	public BufferedImage getImage() {
+		return image;
 	}
 	
 	/**

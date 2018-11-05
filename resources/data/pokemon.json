@@ -1,0 +1,76 @@
+{
+	"pokedex" : [
+		{
+			"id": "001"
+			"name": "Bulbasaur"
+			"type": [
+				"Grass", "Poison"
+			]
+			"icon": "/data/icon/bulbasaur.png"
+		},
+		{
+			"id": "002"
+			"name": "Ivysaur"
+			"type": [
+				"Grass", "Poison"
+			]
+			"icon": "/data/icon/ivysaur.png"
+		},
+		{
+			"id": "003"
+			"name": "Venusaur"
+			"type": [
+				"Grass", "Poison"
+			]
+			"icon": "/data/icon/venusaur.png"
+		},
+		{
+			"id": "004"
+			"name": "Charmander"
+			"type": [
+				"Fire"
+			]
+			"icon": "/data/icon/charmander.png"
+		},
+		{
+			"id": "005"
+			"name": "Charmeleon"
+			"type": [
+				"Fire"
+			]
+			"icon": "/data/icon/charmeleon.png"
+		},
+		{
+			"id": "006"
+			"name": "Charizard"
+			"type": [
+				"Fire", "Flying"
+			]
+			"icon": "/data/icon/charizard.png"
+		},
+		{
+			"id": "007"
+			"name": "Squirtle"
+			"type": [
+				"Water"
+			]
+			"icon": "/data/icon/squirtle.png"
+		},
+		{
+			"id": "008"
+			"name": "Wartortle"
+			"type": [
+				"Water"
+			]
+			"icon": "/data/icon/wartortle.png"
+		},
+		{
+			"id": "009"
+			"name": "Blastoise"
+			"type": [
+				"Water"
+			]
+			"icon": "/data/icon/blastoise.png"
+		}
+	]
+}

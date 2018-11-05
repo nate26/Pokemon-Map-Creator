@@ -15,5 +15,6 @@ public class Settings {
 	public static final int DEFAULT_MAP_WIDTH = DEFAULT_MAP_TILES_WIDE * 30;
 	public static final int DEFAULT_MAP_HEIGHT = DEFAULT_MAP_TILES_HIGH * 30;
 	public static final Block DEFAULT_MAP_BLOCK = Block.VOID;
+	public static final String POKEMON_JSON_PATH = "/data/pokemon.json";
 	
 }
