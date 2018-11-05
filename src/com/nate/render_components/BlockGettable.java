@@ -4,6 +4,6 @@ import com.nate.library.Block;
 
 public interface BlockGettable {
 	
-	public Block selectedBlock();
+	public Block getSelectedBlock();
 
 }

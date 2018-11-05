@@ -20,7 +20,8 @@ public class MapComponent extends JPanel {
 		mapManager = new MapManager();
 		setLayout(null);
 		setSize(Settings.DEFAULT_MAP_WIDTH, Settings.DEFAULT_MAP_HEIGHT);
-		setTiles(20, 20);//Settings.DEFAULT_MAP_TILES_WIDE, Settings.DEFAULT_MAP_TILES_HIGH);
+		setLocation(Settings.MAP_X, Settings.MAP_Y);
+		setTiles(5, 5);//Settings.DEFAULT_MAP_TILES_WIDE, Settings.DEFAULT_MAP_TILES_HIGH);
 	}
 	
 	public MapComponent(int width, int height, int tileN, int tileM, BlockGettable imageGetter) {
@@ -66,13 +67,14 @@ public class MapComponent extends JPanel {
 	}
 	
 	public void printAll(Tile[][] tiles) {
+		System.out.println("");
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				if (j == tiles[i].length - 1) {
 					System.out.println(tiles[i][j].getBlock());
 				}
 				else {
-					System.out.print(tiles[i][j].getBlock() + " ");
+					System.out.print(tiles[i][j].getBlock() + "\t ");
 				}
 			}
 		}
@@ -121,9 +123,9 @@ public class MapComponent extends JPanel {
 	}
 		
 	private void setNextImage(Tile tile, int i, int j) {
-		tile.setBlock(imageGetter.selectedBlock());
+		tile.setBlock(imageGetter.getSelectedBlock());
 		//tile.setBorderPainted(false);
 		tile.repaint();
-		mapManager.setTile(imageGetter.selectedBlock(), i, j);
+		mapManager.setTile(imageGetter.getSelectedBlock(), i, j);
 	}
 }

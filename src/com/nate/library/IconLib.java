@@ -18,7 +18,11 @@ public enum IconLib {
 	PAN_LEFT("/icons/panLeft.png"),
 	PAN_RIGHT("/icons/panRight.png"),
 	PAN_UP("/icons/panUp.png"),
-	PAN_DOWN("/icons/panDown.png");
+	PAN_DOWN("/icons/panDown.png"), 
+	SLIDER_GRASS("/icons/grassIcon.png"), 
+	SLIDER_NPC("/icons/npcIcon.png"), 
+	SLIDER_SAND("/icons/sandIcon.png"), 
+	SLIDER_STONE("/icons/stoneIcon.png");
 	
 	private final BufferedImage image;
 	

@@ -1,5 +1,9 @@
 package com.nate.controller;
 
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 import com.nate.library.Settings;
@@ -16,10 +20,16 @@ public class Controller {
 		window.setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
 		//TODO set location under window tab
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
+		
+		Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(window.getGraphicsConfiguration());
+		window.setLocation((scrSize.width - window.getWidth())/2, 
+						   (scrSize.height - toolHeight.bottom - window.getHeight())/2);
 		
 		Renderer render = new Renderer(window);
-		MapManager manager = new MapManager();
+		MapManager manager = new MapManager();		
+
+		window.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
