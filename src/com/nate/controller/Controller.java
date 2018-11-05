@@ -26,8 +26,8 @@ public class Controller {
 		window.setLocation((scrSize.width - window.getWidth())/2, 
 						   (scrSize.height - toolHeight.bottom - window.getHeight())/2);
 		
-		Renderer render = new Renderer(window);
-		MapManager manager = new MapManager();		
+		MapManager manager = new MapManager();	
+		Renderer render = new Renderer(window, manager);	
 
 		window.setVisible(true);
 	}

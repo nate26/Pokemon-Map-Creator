@@ -24,13 +24,14 @@ import javax.swing.WindowConstants;
 
 import com.nate.library.Block;
 import com.nate.library.IconLib;
+import com.nate.map.MapManager;
 
 public class Renderer implements BlockGettable {
 	
 	private JLayeredPane pane;
 	private Block selectedBlock;
 	
-	public Renderer(JFrame window) {
+	public Renderer(JFrame window, MapManager mapManager) {
 		selectedBlock = Block.GRASS;
 		
 		pane = new JLayeredPane();
@@ -38,7 +39,7 @@ public class Renderer implements BlockGettable {
 		pane.setLocation(0, 0);
 		window.add(pane);
 		
-		MapComponent mc = new MapComponent(this);
+		MapComponent mc = new MapComponent(this, mapManager);
 		pane.add(mc, 0);
 		
 		Selector selector = new Selector(this::setSelectedBlock);
@@ -94,7 +95,7 @@ public class Renderer implements BlockGettable {
 		});
 		pane.add(d, 0);
 		
-		setMenuBar(window);
+		setMenuBar(window, mapManager);
 	}
 	
 	public void setSelectedBlock(Block selectedBlock) {
@@ -107,7 +108,7 @@ public class Renderer implements BlockGettable {
 	
 	
 	private int gridSize = 15;
-	public void setMenuBar(JFrame window) {
+	public void setMenuBar(JFrame window, MapManager mapManager) {
 		JMenuBar menuBar = new JMenuBar();
 		window.setJMenuBar(menuBar);
 		
@@ -125,12 +126,22 @@ public class Renderer implements BlockGettable {
 		});
 		fileMenu.add(exitMenuItem);
 		
+		JMenuItem exportMenuItem = new JMenuItem("Export", KeyEvent.VK_S);
+		exportMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		exportMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mapManager.export();
+			}
+		});
+		fileMenu.add(exportMenuItem);
+		
 		JMenu mapMenu = new JMenu("Map");
 		mapMenu.setMnemonic(KeyEvent.VK_O);
 		menuBar.add(mapMenu);
 		
 		JMenuItem Map_EditSize = new JMenuItem("Edit Map Size");
-		Map_EditSize.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		Map_EditSize.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		Map_EditSize.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

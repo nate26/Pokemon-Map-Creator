@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.function.Consumer;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -32,7 +33,7 @@ public class Selector extends JPanel {
 	
 	private void setSlides() {
 		terrainPanel = new JPanel();
-		terrainPanel.setLayout(null);
+		terrainPanel.setLayout(new BoxLayout(terrainPanel, BoxLayout.Y_AXIS));
 		int size = Settings.SELECTOR_WIDTH / 3;
 		
 		SlideComponent grass = new SlideComponent(IconLib.SLIDER_GRASS, setSelectedBlock);
@@ -43,6 +44,7 @@ public class Selector extends JPanel {
 		terrainPanel.add(grass);
 		
 		SlideComponent sand = new SlideComponent(IconLib.SLIDER_SAND, setSelectedBlock);
+		sand.setTiles(new Tile(size, size, Block.SAND));
 		sand.setLocation(0, Settings.SLIDE_HEADER_HEIGHT);
 		terrainPanel.add(sand);sand.setBackground(Color.green);
 		
@@ -67,6 +69,7 @@ public class Selector extends JPanel {
 		npcPanel = new JPanel();
 		npcPanel.setLayout(null);
 		SlideComponent npc = new SlideComponent(IconLib.SLIDER_NPC, setSelectedBlock);
+		npc.setTiles(new Tile(size, size, Block.PLAYER));
 		npc.setLocation(0, 0);
 		npcPanel.add(npc);
 		npcPanel.setSize(getWidth() - 20, getHeight());

@@ -15,9 +15,9 @@ public class MapComponent extends JPanel {
 	private Tile[][] tiles;
 	private boolean mouseDown = false;
 	
-	public MapComponent(BlockGettable imageGetter) {
+	public MapComponent(BlockGettable imageGetter, MapManager mapManager) {
 		this.imageGetter = imageGetter;
-		mapManager = new MapManager();
+		this.mapManager = mapManager;
 		setLayout(null);
 		setSize(Settings.DEFAULT_MAP_WIDTH, Settings.DEFAULT_MAP_HEIGHT);
 		setLocation(Settings.MAP_X, Settings.MAP_Y);

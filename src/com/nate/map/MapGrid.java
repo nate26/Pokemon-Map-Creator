@@ -81,6 +81,25 @@ public class MapGrid extends ArrayList<Block> {
 		forEach(b -> frequencies.put(b, frequencies.get(b) + 1 / size()));
 		return frequencies;
 	}
+	
+	/**
+	 * Gets the width of the map.
+	 * 
+	 * @return width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	
+	/**
+	 * Gets the height of the map.
+	 * 
+	 * @return height
+	 */
+	public int getHeight() {
+		return height;
+	}
 
 	/**
 	 * Populates all the blocks in the map with the specified block.

@@ -9,6 +9,7 @@ public class Settings {
 	
 	public static final int WINDOW_WIDTH = 1800;
 	public static final int WINDOW_HEIGHT = 1200;
+	public static final int DEFAULT_TILE_SIZE = 16;
 
 	public static final int DEFAULT_MAP_TILES_WIDE = 30;
 	public static final int DEFAULT_MAP_TILES_HIGH = 30;
