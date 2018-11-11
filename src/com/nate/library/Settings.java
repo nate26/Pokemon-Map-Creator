@@ -1,5 +1,7 @@
 package com.nate.library;
 
+import java.awt.Font;
+
 /**
  * Global settings for the application.
  * 
@@ -29,5 +31,7 @@ public class Settings {
 	public static final String POKEMON_JSON_PATH = "/data/pokemon.json";
 	public static final int MAP_X = 50;
 	public static final int MAP_Y = 100;
+	
+	public static final Font FONT = new Font("Calibri", Font.PLAIN, 16);
 	
 }

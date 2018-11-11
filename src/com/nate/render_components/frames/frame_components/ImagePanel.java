@@ -1,4 +1,4 @@
-package com.nate.render_components;
+package com.nate.render_components.frames.frame_components;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,37 +7,35 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
+import javax.swing.JPanel;
 
-public class ImageButton extends JButton {
-	private static final long serialVersionUID = -4631982310313355027L;
+public class ImagePanel extends JPanel {
+	private static final long serialVersionUID = 746033013421608788L;
 	private BufferedImage image;
 
-	/**
-	 * Sets button to the given image with given width and height.
-	 * 
-	 * @param width for the tile
-	 * @param height for the tile
-	 * @param image for the tile
-	 */
-	public ImageButton(int width, int height, BufferedImage image) {
+	public ImagePanel(int width, int height, BufferedImage image) {
 		this.image = image;
 		setSize(width, height);
 	}
 	
+	public ImagePanel(BufferedImage image) {
+		this.image = image;
+		setSize(image.getWidth(), image.getHeight());
+	}
+
 	/**
-	 * Gets the image of the button.
+	 * Gets the image of the panel.
 	 * 
-	 * @return image of the button
+	 * @return image of the panel
 	 */
 	public BufferedImage getImage() {
 		return image;
 	}
 	
 	/**
-	 * Sets the image of the button. Updates the image automatically.
+	 * Sets the image of the panel. Updates the image automatically.
 	 * 
-	 * @param image for the button
+	 * @param image for the panel
 	 */
 	public void setImage(BufferedImage image) {
 		this.image = getScaledImage(image, getWidth(), getHeight());
@@ -129,4 +127,5 @@ public class ImageButton extends JButton {
 	    g2.dispose();
 	    return resizedImg;
 	}
+
 }

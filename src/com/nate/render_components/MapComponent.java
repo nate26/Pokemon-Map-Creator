@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import com.nate.library.Block;
 import com.nate.library.Settings;
 import com.nate.map.MapManager;
 
@@ -21,7 +22,7 @@ public class MapComponent extends JPanel {
 		setLayout(null);
 		setSize(Settings.DEFAULT_MAP_WIDTH, Settings.DEFAULT_MAP_HEIGHT);
 		setLocation(Settings.MAP_X, Settings.MAP_Y);
-		setTiles(5, 5);//Settings.DEFAULT_MAP_TILES_WIDE, Settings.DEFAULT_MAP_TILES_HIGH);
+		setTiles(Settings.DEFAULT_MAP_TILES_WIDE, Settings.DEFAULT_MAP_TILES_HIGH);
 	}
 	
 	public MapComponent(int width, int height, int tileN, int tileM, BlockGettable imageGetter) {
@@ -47,8 +48,7 @@ public class MapComponent extends JPanel {
 	}
 	
 	public void panMap(int displacementX, int displacementY) {
-		Tile[][] oldTiles = tiles;
-		printAll(oldTiles);
+		Block[][] oldTiles = copy(tiles);
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				if (i + displacementX < 0 || i + displacementX >= tiles.length ||
@@ -57,27 +57,37 @@ public class MapComponent extends JPanel {
 					mapManager.setTile(Settings.DEFAULT_MAP_BLOCK, i, j);
 				}
 				else {
-					tiles[i][j].setBlock(oldTiles[i + displacementX][j + displacementY].getBlock());
-					mapManager.setTile(oldTiles[i + displacementX][j + displacementY].getBlock(), i, j);
+					tiles[i][j].setBlock(oldTiles[i + displacementX][j + displacementY]);
+					mapManager.setTile(oldTiles[i + displacementX][j + displacementY], i, j);
 				}
 			}
 		}
 		repaint();
-		printAll(oldTiles);
 	}
+
 	
-	public void printAll(Tile[][] tiles) {
+	public void printAll(Block[][] blocks) {
 		System.out.println("");
-		for (int i = 0; i < tiles.length; i++) {
-			for (int j = 0; j < tiles[i].length; j++) {
-				if (j == tiles[i].length - 1) {
-					System.out.println(tiles[i][j].getBlock());
+		for (int i = 0; i < blocks.length; i++) {
+			for (int j = 0; j < blocks[i].length; j++) {
+				if (j == blocks[i].length - 1) {
+					System.out.println(blocks[i][j]);
 				}
 				else {
-					System.out.print(tiles[i][j].getBlock() + "\t ");
+					System.out.print(blocks[i][j] + " ");
 				}
 			}
 		}
+	}
+	
+	public Block[][] copy(Tile[][] original) {
+		Block[][] copy = new Block[original.length][original[0].length];
+		for (int i = 0; i < original.length; i++) {
+			for (int j = 0; j < original[i].length; j++) {
+				copy[i][j] = original[i][j].getBlock();
+			}
+		}
+		return copy;
 	}
 	
 	public void setTiles(int nx, int ny) {

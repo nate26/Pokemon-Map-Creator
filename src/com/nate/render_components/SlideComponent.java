@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import com.nate.library.Block;
 import com.nate.library.IconLib;
 import com.nate.library.Settings;
+import com.nate.render_components.frames.frame_components.ImageButton;
 
 public class SlideComponent extends JPanel {
 	private static final long serialVersionUID = 3216382966324172095L;

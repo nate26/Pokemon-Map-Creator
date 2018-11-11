@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import com.nate.library.Block;
 import com.nate.library.Settings;
+import com.nate.render_components.frames.frame_components.ImageButton;
 
 /**
  * Each block on the map.  One Tile holds one block image.

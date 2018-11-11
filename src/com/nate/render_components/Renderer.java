@@ -25,14 +25,18 @@ import javax.swing.WindowConstants;
 import com.nate.library.Block;
 import com.nate.library.IconLib;
 import com.nate.map.MapManager;
+import com.nate.render_components.frames.MapSize;
+import com.nate.render_components.frames.frame_components.ImageButton;
 
 public class Renderer implements BlockGettable {
 	
+	private MapManager map;
 	private JLayeredPane pane;
 	private Block selectedBlock;
 	
 	public Renderer(JFrame window, MapManager mapManager) {
 		selectedBlock = Block.GRASS;
+		this.map = mapManager;
 		
 		pane = new JLayeredPane();
 		pane.setSize(window.getWidth(), window.getHeight());
@@ -140,12 +144,13 @@ public class Renderer implements BlockGettable {
 		mapMenu.setMnemonic(KeyEvent.VK_O);
 		menuBar.add(mapMenu);
 		
-		JMenuItem Map_EditSize = new JMenuItem("Edit Map Size");
+		JMenuItem Map_EditSize = new JMenuItem("Map Size");
 		Map_EditSize.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		Map_EditSize.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame sizeEdit = new JFrame();
+				new MapSize(window, map.getCellsWide(), map.getCellsTall());
+				/*JFrame sizeEdit = new JFrame();
 				sizeEdit.setLayout(new FlowLayout());
 				sizeEdit.setSize(200, 100);
 				sizeEdit.setFocusable(true);
@@ -195,7 +200,7 @@ public class Renderer implements BlockGettable {
 				Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(window.getGraphicsConfiguration());
 				sizeEdit.setLocation((scrSize.width - sizeEdit.getWidth())/2, 
 						(scrSize.height - toolHeight.bottom - sizeEdit.getHeight())/2);
-				sizeEdit.setVisible(true);
+				sizeEdit.setVisible(true);*/
 			}
 		});
 		mapMenu.add(Map_EditSize);

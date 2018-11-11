@@ -35,6 +35,14 @@ public class MapManager {
 	public void resize(int i, int j) {
 		map = new MapGrid(i, j, Settings.DEFAULT_MAP_BLOCK);
 	}
+	
+	public int getCellsWide() {
+		return nx;
+	}
+	
+	public int getCellsTall() {
+		return ny;
+	}
 
 	public void export() {
 		//TODO export pokemon spawn in new export function

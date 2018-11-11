@@ -22,7 +22,8 @@ public enum IconLib {
 	SLIDER_GRASS("/icons/grassIcon.png"), 
 	SLIDER_NPC("/icons/npcIcon.png"), 
 	SLIDER_SAND("/icons/sandIcon.png"), 
-	SLIDER_STONE("/icons/stoneIcon.png");
+	SLIDER_STONE("/icons/stoneIcon.png"), 
+	SEPARATOR_LINE("/icons/separator.png");
 	
 	private final BufferedImage image;
 	
