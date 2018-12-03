@@ -22,7 +22,7 @@ public class Settings {
 	public static final int SELECTOR_WIDTH = 400;
 	public static final int SELECTOR_HEIGHT = WINDOW_HEIGHT - SELECTOR_Y;
 	public static final int SLIDE_WIDTH = SELECTOR_WIDTH - 20;
-	public static final int SLIDE_HEIGHT = 1000;
+	public static final int SLIDE_HEIGHT = 400;
 	public static final int SLIDE_HEADER_HEIGHT = (int) (SLIDE_WIDTH / 3.9);
 	public static final int SLIDE_Y = 10;
 	public static final int TAB_SIZE = 16;

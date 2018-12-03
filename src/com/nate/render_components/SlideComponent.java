@@ -6,8 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.function.Consumer;
 
 import javax.swing.JPanel;
@@ -19,16 +17,23 @@ import com.nate.render_components.frames.frame_components.ImageButton;
 
 public class SlideComponent extends JPanel {
 	private static final long serialVersionUID = 3216382966324172095L;
+	private Selector parent;
+	private int id;
+	private IconLib title;
 	private ImageButton header;
 	private List<Tile> tileList;
 	private Consumer<Block> selectedBlock;
 	private boolean open = false;
+	private boolean isAnimating = false;
 
-	public SlideComponent(IconLib icon, Consumer<Block> selectedBlock) {
+	public SlideComponent(Selector parent, int id, IconLib title, Consumer<Block> selectedBlock) {
+		this.parent = parent;
+		this.id = id;
+		this.title = title;
 		this.selectedBlock = selectedBlock;
 		setSize(Settings.SLIDE_WIDTH, Settings.SLIDE_HEADER_HEIGHT);
 		setLayout(null);
-		setHeader(icon.getImage());
+		setHeader(title.getImage());
 		tileList = new ArrayList<Tile>();
 	}
 	
@@ -38,12 +43,14 @@ public class SlideComponent extends JPanel {
 		header.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!open) {
-					animateOpen();
-					tileList.forEach(t -> add(t));
-				}
-				else {
-					animateClose();
+				if (!isAnimating) {
+					if (!open) {
+						animateOpen();
+					}
+					else {
+						animateClose();
+					}
+					open = !open;
 				}
 			}
 		});
@@ -66,45 +73,26 @@ public class SlideComponent extends JPanel {
 			});
 			x = x + size + 20;
 		}
+		tileList.forEach(t -> add(t));
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public IconLib getTitle() {
+		return title;
+	}
+	
+	public void setAnimationAs(boolean on) {
+		isAnimating = on;
 	}
 	
 	private void animateOpen() {
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			private int grow = 1;
-			@Override
-			public void run() {
-				if (getHeight() >= 400) {//Settings.SLIDE_HEIGHT) {
-					timer.cancel();
-				}
-				if (grow < 10) {
-					grow++;
-				}
-				setSize(getWidth(), getHeight() + grow);
-				repaint();
-			}
-		}, 0, 10);
+		parent.animateOpen(this);
 	}
 	
 	private void animateClose() {
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			private int grow = 1;
-			@Override
-			public void run() {
-				if (getHeight() + grow <= Settings.SLIDE_HEADER_HEIGHT) {
-					timer.cancel();
-					setSize(getWidth(), Settings.SLIDE_HEADER_HEIGHT);
-					removeAll();
-					add(header);
-					repaint();
-				}
-				if (grow < 10) {
-					grow++;
-				}
-				setSize(getWidth(), getHeight() - grow);
-				repaint();
-			}
-		}, 0, 10);
+		parent.animateClose(this);
 	}
 }
